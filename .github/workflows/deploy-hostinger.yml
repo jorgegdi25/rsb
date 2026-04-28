@@ -39,31 +39,14 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin production || true
 
-          rm -rf /tmp/production-branch
+          rm -rf /tmp/production-dist
+          cp -R dist /tmp/production-dist
 
-          if git ls-remote --exit-code --heads origin production; then
-            git worktree add /tmp/production-branch origin/production
-          else
-            git worktree add -B production /tmp/production-branch HEAD
-          fi
-
-          find /tmp/production-branch -mindepth 1 -maxdepth 1 \
-            ! -name '.git' \
-            ! -name '.github' \
-            -exec rm -rf {} +
-
-          rsync -a --delete dist/ /tmp/production-branch/
-
-          cd /tmp/production-branch
-          git checkout -B production
+          git checkout --orphan production-deploy
+          git rm -rf .
+          cp -R /tmp/production-dist/. .
           git add -A
 
-          if git diff --cached --quiet; then
-            echo "No changes to publish"
-            exit 0
-          fi
-
           git commit -m "Deploy production build"
-          git push origin production --force
+          git push origin production-deploy:production --force
