@@ -1,7 +1,8 @@
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { Calendar, ArrowLeft, ArrowRight, Globe, Building2, GraduationCap, Microscope } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import Footer from '../components/Footer';
 
 const Article = () => {
   const { t } = useLanguage();
@@ -30,7 +31,7 @@ const Article = () => {
             {t('nav_home')}
           </button>
 
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
@@ -48,7 +49,7 @@ const Article = () => {
             <h1 className="text-4xl md:text-7xl font-black text-white leading-[1.1] mb-8 tracking-tighter max-w-5xl">
               {t('art_title')}
             </h1>
-          </motion.div>
+          </Motion.div>
         </div>
       </section>
 
@@ -123,12 +124,7 @@ const Article = () => {
         </div>
       </section>
 
-      <footer className="bg-stone-950 py-24 border-t border-stone-900">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-10">
-          <img src="/images/logo.webp" alt="Logo" style={{ height: '72px' }} />
-          <div className="text-stone-600 font-bold tracking-widest text-xs uppercase">{t('footer_copy')}</div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

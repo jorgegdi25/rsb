@@ -1,7 +1,8 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion as Motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Droplet, MapPin, Shield, TreePine, Users, ArrowRight, AlertTriangle, Waves, FileText, Download, Microscope } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import Footer from '../components/Footer';
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -34,7 +35,7 @@ const Impact = ({ onContactClick }) => {
       <section className="relative min-h-[820px] md:min-h-screen flex items-center md:items-end overflow-hidden py-32 md:py-0">
         <div className="absolute inset-0">
           <AnimatePresence mode="wait">
-            <motion.img key={currentSlide} src={slides[currentSlide].url} initial={{ opacity: 0, scale: 1.1 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1.5 }} className="w-full h-full object-cover" />
+            <Motion.img key={currentSlide} src={slides[currentSlide].url} initial={{ opacity: 0, scale: 1.1 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1.5 }} className="w-full h-full object-cover" />
           </AnimatePresence>
           <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent"></div>
         </div>
@@ -44,16 +45,16 @@ const Impact = ({ onContactClick }) => {
           ))}
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 md:pb-28 w-full">
-          <motion.div className="max-w-3xl" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
+          <Motion.div className="max-w-3xl" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
             <span className="inline-flex items-center gap-2 bg-brand-green/20 backdrop-blur-md border border-brand-green/30 text-brand-green px-5 py-2 rounded-full text-sm font-bold tracking-wider uppercase mb-8">
               <Waves size={16} /> {t('impact_hero_tag')}
             </span>
             <AnimatePresence mode="wait">
-              <motion.div key={currentSlide} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} transition={{ duration: 0.5 }}>
+              <Motion.div key={currentSlide} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} transition={{ duration: 0.5 }}>
                 <h1 className="text-4xl sm:text-5xl md:text-8xl font-black text-white leading-[1.05] md:leading-[1] mb-8 tracking-tighter">
                   {slides[currentSlide].title} <br /> <span className="text-brand-green italic">{slides[currentSlide].subtitle}</span>
                 </h1>
-              </motion.div>
+              </Motion.div>
             </AnimatePresence>
             <p className="text-lg md:text-xl text-white/70 max-w-2xl leading-relaxed mb-12">{t('impact_hero_desc')}</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -69,22 +70,22 @@ const Impact = ({ onContactClick }) => {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </Motion.div>
         </div>
       </section>
 
       {/* INTRO */}
       <section className="py-32 px-6 md:px-12 bg-white">
         <div className="max-w-7xl mx-auto">
-          <motion.div className="max-w-4xl mx-auto text-center mb-24" {...fadeUp}>
+          <Motion.div className="max-w-4xl mx-auto text-center mb-24" {...fadeUp}>
             <span className="text-brand-green font-bold text-sm uppercase tracking-[0.3em] mb-4 block">{t('impact_intro_tag')}</span>
             <h2 className="text-5xl md:text-6xl font-black text-stone-900 leading-tight mb-8 tracking-tighter">
               {t('impact_intro_title')} <span className="text-brand-green italic">{t('impact_intro_title_accent')}</span>, {t('impact_intro_title_suffix')}
             </h2>
             <p className="text-stone-500 text-xl leading-relaxed">{t('impact_intro_desc')}</p>
-          </motion.div>
+          </Motion.div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            <motion.div {...fadeUp} className="relative group">
+            <Motion.div {...fadeUp} className="relative group">
               <div className="rounded-[3rem] overflow-hidden shadow-2xl relative">
                 <img src="/images/forest.webp" alt="Forest" className="w-full h-[600px] object-cover transition-transform duration-700 group-hover:scale-110" />
               </div>
@@ -95,8 +96,8 @@ const Impact = ({ onContactClick }) => {
                 </div>
                 <p className="text-stone-500 text-lg leading-relaxed">{t('impact_bio_desc')}</p>
               </div>
-            </motion.div>
-            <motion.div {...fadeUp} className="space-y-8 lg:pt-12">
+            </Motion.div>
+            <Motion.div {...fadeUp} className="space-y-8 lg:pt-12">
               {[
                 { icon: <Droplet size={24} />, title: t('impact_mercury_title'), sub: t('impact_mercury_sub'), desc: t('impact_mercury_desc') },
                 { icon: <AlertTriangle size={24} />, title: t('impact_finding_title'), sub: t('impact_finding_sub'), desc: t('impact_finding_desc') },
@@ -113,7 +114,7 @@ const Impact = ({ onContactClick }) => {
                   </div>
                 </div>
               ))}
-            </motion.div>
+            </Motion.div>
           </div>
         </div>
       </section>
@@ -122,7 +123,7 @@ const Impact = ({ onContactClick }) => {
       <section className="py-32 px-6 md:px-12 bg-stone-900 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-            <motion.div {...fadeUp}>
+            <Motion.div {...fadeUp}>
               <span className="text-brand-green font-bold text-sm uppercase tracking-[0.3em] mb-6 block">{t('impact_legal_tag')}</span>
               <h2 className="text-5xl md:text-7xl font-black text-white leading-tight mb-10 tracking-tighter">
                 {t('impact_legal_title')} <br /><span className="text-brand-green italic">T-622</span>
@@ -135,8 +136,8 @@ const Impact = ({ onContactClick }) => {
                   <p className="text-stone-400 leading-relaxed font-medium">{t('impact_rights_desc')}</p>
                 </div>
               </div>
-            </motion.div>
-            <motion.div {...fadeUp} className="relative group">
+            </Motion.div>
+            <Motion.div {...fadeUp} className="relative group">
               <div className="rounded-[3rem] overflow-hidden shadow-2xl relative">
                 <img src="/images/atrato_river.webp" alt="Atrato" className="w-full h-[600px] object-cover transition-transform duration-1000 group-hover:scale-105" />
               </div>
@@ -144,7 +145,7 @@ const Impact = ({ onContactClick }) => {
                 <div className="text-5xl font-black mb-1">2016</div>
                 <div className="text-sm font-bold uppercase tracking-widest text-white/80">{t('impact_court_ruling')}</div>
               </div>
-            </motion.div>
+            </Motion.div>
           </div>
         </div>
       </section>
@@ -152,23 +153,23 @@ const Impact = ({ onContactClick }) => {
       {/* RESPONSE */}
       <section className="py-32 px-6 md:px-12 bg-stone-50">
         <div className="max-w-7xl mx-auto">
-          <motion.div className="text-center mb-24" {...fadeUp}>
+          <Motion.div className="text-center mb-24" {...fadeUp}>
             <span className="text-brand-green font-bold text-sm uppercase tracking-widest mb-4 block">{t('impact_response_tag')}</span>
             <h2 className="text-5xl md:text-6xl font-black text-stone-900 leading-tight tracking-tighter">
               {t('impact_response_title')} <span className="text-brand-green italic">{t('impact_response_title_accent')}</span>
             </h2>
-          </motion.div>
+          </Motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {[
               { icon: <Droplet size={32} />, title: t('impact_sol_water'), desc: t('impact_sol_water_desc') },
               { icon: <TreePine size={32} />, title: t('impact_sol_biochar'), desc: t('impact_sol_biochar_desc') },
               { icon: <Waves size={32} />, title: t('impact_sol_eco'), desc: t('impact_sol_eco_desc') }
             ].map((item, i) => (
-              <motion.div key={i} className="group bg-white rounded-[2.5rem] p-12 shadow-sm border border-stone-100 hover:shadow-2xl transition-all duration-700 hover:-translate-y-4" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.15 }}>
+              <Motion.div key={i} className="group bg-white rounded-[2.5rem] p-12 shadow-sm border border-stone-100 hover:shadow-2xl transition-all duration-700 hover:-translate-y-4" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.15 }}>
                 <div className="w-20 h-20 bg-brand-green text-white flex items-center justify-center rounded-3xl mb-10 group-hover:rotate-6 transition-all shadow-xl shadow-brand-green/20">{item.icon}</div>
                 <h3 className="text-2xl font-black text-stone-900 mb-4">{item.title}</h3>
                 <p className="text-stone-500 leading-relaxed font-medium text-lg">{item.desc}</p>
-              </motion.div>
+              </Motion.div>
             ))}
           </div>
         </div>
@@ -177,11 +178,11 @@ const Impact = ({ onContactClick }) => {
       {/* DOCUMENTS SECTION */}
       <section className="py-32 px-6 md:px-12 bg-white">
         <div className="max-w-7xl mx-auto">
-          <motion.div className="text-center mb-20" {...fadeUp}>
+          <Motion.div className="text-center mb-20" {...fadeUp}>
             <span className="text-brand-green font-bold text-sm uppercase tracking-widest mb-4 block">RESOURCES</span>
             <h2 className="text-5xl md:text-6xl font-black text-stone-900 tracking-tighter mb-6">{t('impact_docs_title')}</h2>
             <p className="text-stone-500 text-xl max-w-3xl mx-auto">{t('impact_docs_desc')}</p>
-          </motion.div>
+          </Motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
@@ -189,7 +190,7 @@ const Impact = ({ onContactClick }) => {
               { title: t('doc_mercury'), file: 'Mercury_Risk_Assessment.pdf', icon: <Microscope size={32} /> },
               { title: t('doc_history'), file: 'Atrato_History.pdf', icon: <FileText size={32} /> }
             ].map((doc, i) => (
-              <motion.div key={i} className="group bg-stone-50 rounded-[2.5rem] p-10 border border-stone-100 hover:bg-white hover:shadow-2xl transition-all duration-500" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
+              <Motion.div key={i} className="group bg-stone-50 rounded-[2.5rem] p-10 border border-stone-100 hover:bg-white hover:shadow-2xl transition-all duration-500" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
                 <div className="w-16 h-16 bg-brand-green/10 text-brand-green rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
                   {doc.icon || <FileText size={32} />}
                 </div>
@@ -197,7 +198,7 @@ const Impact = ({ onContactClick }) => {
                 <a href={`/documents/${doc.file}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 text-brand-green font-black uppercase tracking-widest text-xs hover:gap-5 transition-all">
                   {t('doc_download')} <Download size={16} />
                 </a>
-              </motion.div>
+              </Motion.div>
             ))}
           </div>
         </div>
@@ -209,23 +210,18 @@ const Impact = ({ onContactClick }) => {
           <img src="/images/forest.webp" alt="Forest" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-stone-950/80 backdrop-blur-sm"></div>
         </div>
-        <motion.div className="relative z-10 max-w-4xl mx-auto text-center py-10" initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}>
+        <Motion.div className="relative z-10 max-w-4xl mx-auto text-center py-10" initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}>
           <Users size={64} className="text-brand-green mx-auto mb-8" />
           <h2 className="text-5xl md:text-7xl font-black text-white mb-10 leading-tight tracking-tighter">
             {t('impact_cta_title')} <br /><span className="text-brand-green">{t('impact_cta_accent')}</span>
           </h2>
-          <motion.button onClick={onContactClick} className="bg-brand-green text-white px-12 py-6 rounded-[2rem] font-black text-xl shadow-2xl shadow-brand-green/40 hover:shadow-brand-green/60 transition-all inline-flex items-center gap-4" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <Motion.button onClick={onContactClick} className="bg-brand-green text-white px-12 py-6 rounded-[2rem] font-black text-xl shadow-2xl shadow-brand-green/40 hover:shadow-brand-green/60 transition-all inline-flex items-center gap-4" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             {t('impact_cta_button')} <ArrowRight size={24} />
-          </motion.button>
-        </motion.div>
+          </Motion.button>
+        </Motion.div>
       </section>
 
-      <footer className="bg-stone-950 py-20 border-t border-stone-900">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-10">
-          <img src="/images/logo.webp" alt="Logo" style={{ height: '72px' }} />
-          <div className="text-stone-600 font-bold tracking-widest text-sm uppercase">© 2024 RSB Green Tech. All rights reserved.</div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

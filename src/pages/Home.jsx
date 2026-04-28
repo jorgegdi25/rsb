@@ -1,8 +1,9 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion as Motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { LeafyGreen, Droplet, Atom, ArrowRight, FlaskConical, Microscope, Shield, Zap, Beaker, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+import Footer from '../components/Footer';
 
 const Home = ({ onContactClick }) => {
   const { t } = useLanguage();
@@ -56,7 +57,7 @@ const Home = ({ onContactClick }) => {
       <section className="relative min-h-[760px] md:h-screen flex items-center overflow-hidden py-28 md:py-0">
         <div className="absolute inset-0">
           <AnimatePresence mode="wait">
-            <motion.img
+            <Motion.img
               key={currentSlide}
               src={heroSlides[currentSlide].url}
               initial={{ opacity: 0, scale: 1.1 }}
@@ -83,7 +84,7 @@ const Home = ({ onContactClick }) => {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full pt-8 md:pt-20">
-          <motion.div className="max-w-3xl" initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1.2 }}>
+          <Motion.div className="max-w-3xl" initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1.2 }}>
             <span className="inline-block bg-brand-green/20 backdrop-blur-md border border-brand-green/30 text-brand-green px-6 py-2 rounded-full text-sm font-bold tracking-widest uppercase mb-8">
               {t('hero_leadership')}
             </span>
@@ -102,7 +103,7 @@ const Home = ({ onContactClick }) => {
                 {t('hero_cta_impact')}
               </Link>
             </div>
-          </motion.div>
+          </Motion.div>
         </div>
       </section>
 
@@ -132,7 +133,7 @@ const Home = ({ onContactClick }) => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {solutions.map((sol, idx) => (
-              <motion.div key={idx} className="group relative bg-stone-50 rounded-[2.5rem] overflow-hidden border border-stone-100 transition-all duration-700 hover:shadow-2xl hover:-translate-y-4" initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.2 }}>
+              <Motion.div key={idx} className="group relative bg-stone-50 rounded-[2.5rem] overflow-hidden border border-stone-100 transition-all duration-700 hover:shadow-2xl hover:-translate-y-4" initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.2 }}>
                 <div className="h-72 overflow-hidden relative">
                   <img src={sol.image} alt={sol.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                   <div className="absolute top-6 left-6">
@@ -146,7 +147,7 @@ const Home = ({ onContactClick }) => {
                     {t('solutions_cta')} <ArrowRight size={20} />
                   </div>
                 </div>
-              </motion.div>
+              </Motion.div>
             ))}
           </div>
         </div>
@@ -177,14 +178,14 @@ const Home = ({ onContactClick }) => {
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <motion.div className="space-y-4" initial={{ y: 20 }} whileInView={{ y: 0 }}>
+              <Motion.div className="space-y-4" initial={{ y: 20 }} whileInView={{ y: 0 }}>
                 <img src="/images/gallery1.webp" className="rounded-3xl h-64 w-full object-cover shadow-lg" alt="1" />
                 <img src="/images/gallery2.webp" className="rounded-3xl h-80 w-full object-cover shadow-lg" alt="2" />
-              </motion.div>
-              <motion.div className="space-y-4 mt-8" initial={{ y: -20 }} whileInView={{ y: 0 }}>
+              </Motion.div>
+              <Motion.div className="space-y-4 mt-8" initial={{ y: -20 }} whileInView={{ y: 0 }}>
                 <img src="/images/gallery3.webp" className="rounded-3xl h-80 w-full object-cover shadow-lg" alt="3" />
                 <img src="/images/gallery4.webp" className="rounded-3xl h-64 w-full object-cover shadow-lg" alt="4" />
-              </motion.div>
+              </Motion.div>
             </div>
           </div>
         </div>
@@ -282,12 +283,7 @@ const Home = ({ onContactClick }) => {
         </div>
       </section>
 
-      <footer className="bg-stone-950 py-16 border-t border-stone-900">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-8">
-          <img src="/images/logo.webp" alt="Logo" style={{ height: '72px' }} />
-          <div className="text-stone-600 font-medium">© 2024 RSB Green Tech. All rights reserved.</div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
