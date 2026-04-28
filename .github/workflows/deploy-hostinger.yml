@@ -44,7 +44,7 @@ jobs:
           cp -R dist /tmp/production-dist
 
           git checkout --orphan production-deploy
-          git rm -rf .
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
           cp -R /tmp/production-dist/. .
           git add -A
 
