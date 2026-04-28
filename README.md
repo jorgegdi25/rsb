@@ -1,6 +1,7 @@
 # RSB Green Tech
 
 Sitio web hecho con React y Vite para RSB Green Tech.
+Prueba de despliegue automatico conectada a Hostinger.
 
 ## Desarrollo local
 
