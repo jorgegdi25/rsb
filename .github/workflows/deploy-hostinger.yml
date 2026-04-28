@@ -35,18 +35,27 @@ jobs:
       - name: Build production site
         run: npm run build
 
+      - name: Check out production branch
+        uses: actions/checkout@v6
+        with:
+          ref: production
+          path: production-branch
+          fetch-depth: 0
+
       - name: Publish dist to production branch
         run: |
+          find production-branch -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+          cp -R dist/. production-branch/
+
+          cd production-branch
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          rm -rf /tmp/production-dist
-          cp -R dist /tmp/production-dist
-
-          git checkout --orphan production-deploy
-          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
-          cp -R /tmp/production-dist/. .
           git add -A
 
+          if git diff --cached --quiet; then
+            echo "No production changes to publish"
+            exit 0
+          fi
+
           git commit -m "Deploy production build"
-          git push origin production-deploy:production --force
+          git push origin HEAD:production
